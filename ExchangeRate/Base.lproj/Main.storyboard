@@ -18,24 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Abk-o7-u8K">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="gCS-Jj-huQ"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Currency Exchange Rate" id="b7f-6v-4T2"/>
-                                </items>
-                                <variation key="heightClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="gCS-Jj-huQ"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="800" height="44"/>
-                                </variation>
-                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightArrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="dBK-cD-9kt">
                                 <rect key="frame" x="287" y="129" width="27" height="43"/>
                                 <animations/>
@@ -69,8 +51,8 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="inputFromEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="INQ-3t-Ika"/>
-                                            <action selector="inputFromTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="Xcf-ED-cz6"/>
+                                            <action selector="inputLeftEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="psg-Jg-O5R"/>
+                                            <action selector="inputLeftTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="FJc-ZC-vpJ"/>
                                         </connections>
                                     </textField>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RYI-U1-zBk">
@@ -91,10 +73,12 @@
                                                 <include reference="Ses-xm-obw"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="currencyLeftChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="7ku-jy-GeN"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <animations/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="RYI-U1-zBk" firstAttribute="top" secondItem="zgX-gC-Hmk" secondAttribute="bottom" constant="8" id="7Bj-P9-qch"/>
                                     <constraint firstAttribute="trailing" secondItem="zgX-gC-Hmk" secondAttribute="trailing" constant="8" id="8p4-yx-R5P"/>
@@ -134,7 +118,8 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="inputToTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="jn5-bB-wuj"/>
+                                            <action selector="inputRightEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="Bjr-Z4-YmR"/>
+                                            <action selector="inputRightTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="XyG-R5-KVX"/>
                                         </connections>
                                     </textField>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eAk-Jq-YUR">
@@ -155,10 +140,12 @@
                                                 <include reference="prg-oA-WfB"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="currencyRightChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="wqi-O7-MZW"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <animations/>
-                                <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="85" id="02k-Pc-ARc"/>
                                     <constraint firstItem="eAk-Jq-YUR" firstAttribute="top" secondItem="QPd-xF-yWL" secondAttribute="bottom" constant="8" id="Pvl-cX-HLb"/>
@@ -179,12 +166,15 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="4qv-3w-lQe">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="4qv-3w-lQe">
                                 <rect key="frame" x="0.0" y="300" width="600" height="300"/>
                                 <animations/>
                                 <date key="date" timeIntervalSinceReferenceDate="521763216.32123101">
                                     <!--2017-07-14 22:13:36 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="dateRateChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Qwx-pg-eNV"/>
+                                </connections>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Using the conversion rate from" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpS-Bm-rez">
                                 <rect key="frame" x="182" y="271" width="236" height="21"/>
@@ -193,11 +183,43 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Abk-o7-u8K">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="gCS-Jj-huQ"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Exchange Rate" id="b7f-6v-4T2">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="Sp2-jY-uWc">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" id="h2i-IT-OZu">
+                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <state key="normal" title="Hide Keyboard"/>
+                                                <connections>
+                                                    <action selector="btnHideKeyboardTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="u2d-em-pBk"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="gCS-Jj-huQ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="44"/>
+                                </variation>
+                            </navigationBar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4qv-3w-lQe" secondAttribute="bottom" id="22E-Jp-aYs"/>
+                            <constraint firstItem="Abk-o7-u8K" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3tH-qW-nzb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Abk-o7-u8K" secondAttribute="trailing" constant="-20" id="84C-S0-bJ0"/>
                             <constraint firstItem="8jE-Bt-CAc" firstAttribute="centerY" secondItem="dBK-cD-9kt" secondAttribute="centerY" id="9ge-7M-hTC"/>
                             <constraint firstItem="4qv-3w-lQe" firstAttribute="top" secondItem="wpS-Bm-rez" secondAttribute="bottom" constant="8" id="BDu-EB-WTh"/>
@@ -208,13 +230,22 @@
                             <constraint firstAttribute="trailingMargin" secondItem="8jE-Bt-CAc" secondAttribute="trailing" id="Yg8-hN-Ec4"/>
                             <constraint firstItem="dBK-cD-9kt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZfY-GQ-owy"/>
                             <constraint firstItem="hZ4-as-V8q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="d92-OP-eLo"/>
+                            <constraint firstAttribute="trailing" secondItem="Abk-o7-u8K" secondAttribute="trailing" id="eiX-qC-6YE"/>
                             <constraint firstItem="hZ4-as-V8q" firstAttribute="centerY" secondItem="dBK-cD-9kt" secondAttribute="centerY" id="gkT-js-T41"/>
+                            <constraint firstItem="Abk-o7-u8K" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ihc-Pd-FkC"/>
                             <constraint firstItem="hZ4-as-V8q" firstAttribute="trailing" secondItem="dBK-cD-9kt" secondAttribute="leading" constant="-20" id="kBi-oS-TFr"/>
                             <constraint firstAttribute="trailing" secondItem="4qv-3w-lQe" secondAttribute="trailing" id="pxy-0f-ObN"/>
                             <constraint firstItem="Abk-o7-u8K" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="uC1-uY-tYN"/>
                             <constraint firstItem="4qv-3w-lQe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="v6O-Y8-zCH"/>
                             <constraint firstItem="dBK-cD-9kt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.5" id="zbE-eh-i5z"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3tH-qW-nzb"/>
+                                <exclude reference="eiX-qC-6YE"/>
+                                <exclude reference="ihc-Pd-FkC"/>
+                            </mask>
+                        </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="dBK-cD-9kt"/>
@@ -222,24 +253,32 @@
                                 <include reference="wpS-Bm-rez"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="ZfY-GQ-owy"/>
+                                <include reference="zbE-eh-i5z"/>
+                                <include reference="JSZ-Tv-kty"/>
                                 <include reference="BDu-EB-WTh"/>
                                 <include reference="I40-D7-aib"/>
                                 <include reference="pxy-0f-ObN"/>
                                 <include reference="v6O-Y8-zCH"/>
-                                <include reference="ZfY-GQ-owy"/>
-                                <include reference="zbE-eh-i5z"/>
-                                <include reference="JSZ-Tv-kty"/>
                                 <include reference="22E-Jp-aYs"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="3tH-qW-nzb"/>
+                                <include reference="eiX-qC-6YE"/>
+                                <include reference="ihc-Pd-FkC"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="arrowImg" destination="dBK-cD-9kt" id="TZf-QW-N6X"/>
-                        <outlet property="currencyFrom" destination="RYI-U1-zBk" id="Vfo-kq-Uuj"/>
-                        <outlet property="currencyTo" destination="eAk-Jq-YUR" id="B26-2t-z0q"/>
+                        <outlet property="btnHideKeyboard" destination="h2i-IT-OZu" id="qhN-Ns-zlz"/>
+                        <outlet property="currencyLeft" destination="RYI-U1-zBk" id="zjB-Kd-5EH"/>
+                        <outlet property="currencyRight" destination="eAk-Jq-YUR" id="zsh-5p-7xK"/>
                         <outlet property="dateRate" destination="4qv-3w-lQe" id="Qr0-oL-7NX"/>
-                        <outlet property="inputFrom" destination="zgX-gC-Hmk" id="qNR-or-Wq7"/>
-                        <outlet property="inputTo" destination="QPd-xF-yWL" id="mab-on-Hiy"/>
+                        <outlet property="inputLeft" destination="zgX-gC-Hmk" id="VS1-Ma-78t"/>
+                        <outlet property="inputRight" destination="QPd-xF-yWL" id="SRe-Es-9LD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

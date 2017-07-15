@@ -15,5 +15,9 @@
 
 + (id)getInstance; /* singleton */
 
-- (float)convertCurrency: (float)value fromCurr:(ECurrency)from toCurr:(ECurrency)to;
+- (float)convertCurrency:(float)value fromCurr:(ECurrency)from toCurr:(ECurrency)to withDate:(NSDate *)date;
+
+- (NSString *)convertECurrenyToStr: (ECurrency) curr;
+- (ECurrency)convertStrToECurreny: (NSString *) curr;
+- (ECurrency)convertIntToECurreny: (NSInteger) idx;
 @end

@@ -14,7 +14,7 @@
 
 @implementation DataModel
 
-NSString *const API_BASEURL = @"https://api.fixer.io/";
+NSString *const API_BASEURL = @"https://api.fixer.io";
 
 + (id)getInstance {
     static DataModel *instance = nil;
@@ -28,20 +28,27 @@ NSString *const API_BASEURL = @"https://api.fixer.io/";
 
 #pragma mark - API
 
-- (NSString *)getApiUrl: (ECurrency) from {
-    return [NSString stringWithFormat: @"%@latest?base=%@", API_BASEURL, [self convertECurrenyToStr:from]];
+- (NSString *)getApiUrl:(ECurrency)from withDate:(NSDate *)date {
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:date];
+    NSString *dateUrl;
+    if ([[NSCalendar currentCalendar] isDateInToday:date]) {
+        dateUrl = @"latest";
+    } else {
+        dateUrl = [NSString stringWithFormat:@"%04d-%02d-%02d", (int)dateComponents.year, (int)dateComponents.month, (int)dateComponents.day];
+    }
+    return [NSString stringWithFormat: @"%@/%@?base=%@", API_BASEURL, dateUrl, [self convertECurrenyToStr:from]];
 }
 
-- (float) convertCurrency: (float)value fromCurr:(ECurrency)from toCurr:(ECurrency)to {
-    return value*[self getRatioFrom:from toCurr:to];
+- (float) convertCurrency:(float)value fromCurr:(ECurrency)from toCurr:(ECurrency)to withDate:(NSDate *)date {
+    return value*[self getRatioFrom:from toCurr:to withDate:date];
 }
 
-- (float) getRatioFrom:(ECurrency)from toCurr:(ECurrency)to {
+- (float) getRatioFrom:(ECurrency)from toCurr:(ECurrency)to withDate:(NSDate *)date {
     if (from == to) {
         return 1.0f;
     }
 
-    NSString *urlString = [self getApiUrl:from];
+    NSString *urlString = [self getApiUrl:from withDate:date];
     NSData *jsonData = [NSData dataWithContentsOfURL: [NSURL URLWithString:urlString]];
         
     NSDictionary *jsonDict = [self parseJsonResponse:jsonData];
@@ -74,6 +81,16 @@ NSString *const API_BASEURL = @"https://api.fixer.io/";
     }
     if ([curr isEqualToString:@"EUR"]) {
         return ECurrencyEUR;
+    }
+    return ECurrencyRUB;
+}
+
+- (ECurrency)convertIntToECurreny: (NSInteger) idx {
+    switch (idx) {
+        case 1:
+            return ECurrencyUSD;
+        case 2:
+            return ECurrencyEUR;
     }
     return ECurrencyRUB;
 }

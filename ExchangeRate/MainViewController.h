@@ -12,18 +12,25 @@
 @class MainViewController;
 
 @interface MainViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *inputLeft;
+@property (weak, nonatomic) IBOutlet UITextField *inputRight;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *currencyLeft;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *currencyRight;
+@property (weak, nonatomic) IBOutlet UIDatePicker *dateRate;
+@property (weak, nonatomic) IBOutlet UIImageView *arrowImg;
+@property (weak, nonatomic) IBOutlet UIButton *btnHideKeyboard;
 
-@property (retain, nonatomic) IBOutlet UITextField *inputFrom;
-@property (retain, nonatomic) IBOutlet UISegmentedControl *currencyFrom;
-@property (retain, nonatomic) IBOutlet UITextField *inputTo;
-@property (retain, nonatomic) IBOutlet UISegmentedControl *currencyTo;
-@property (retain, nonatomic) IBOutlet UIDatePicker *dateRate;
-@property (retain, nonatomic) IBOutlet UIImageView *arrowImg;
+- (IBAction)inputLeftTouchDown:(id)sender;
+- (IBAction)inputLeftEditingChanged:(id)sender;
+
+- (IBAction)inputRightTouchDown:(id)sender;
+- (IBAction)inputRightEditingChanged:(id)sender;
+
+- (IBAction)currencyLeftChanged:(id)sender;
+- (IBAction)currencyRightChanged:(id)sender;
+- (IBAction)dateRateChanged:(id)sender;
+- (IBAction)btnHideKeyboardTouchDown:(id)sender;
 
 @property (retain, nonatomic) DataModel *model;
-
-- (IBAction)inputFromTouchDown:(id)sender;
-- (IBAction)inputToTouchDown:(id)sender;
-- (IBAction)inputFromEditingChanged:(id)sender;
 
 @end

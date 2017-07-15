@@ -39,9 +39,25 @@
 */
 
 - (void) initialize {
-    self.inputFrom.keyboardType = UIKeyboardTypeDecimalPad;
-    self.inputTo.keyboardType = UIKeyboardTypeDecimalPad;
+    self.inputLeft.keyboardType = UIKeyboardTypeDecimalPad;
+    self.inputRight.keyboardType = UIKeyboardTypeDecimalPad;
+    self.dateRate.maximumDate = [NSDate date];
     self.model = [DataModel getInstance];
+    self.btnHideKeyboard.hidden = TRUE;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void) keyboardWillShow:(NSNotification*)notification {
+    self.btnHideKeyboard.hidden = FALSE;
+}
+
+- (void) keyboardWillBeHidden:(NSNotification*)notification {
+    self.btnHideKeyboard.hidden = TRUE;
+}
+
+- (IBAction)btnHideKeyboardTouchDown:(id)sender {
+    [self.view endEditing:YES];
 }
 
 # pragma mark - Timer that triggers API request
@@ -53,11 +69,54 @@
 - (void) fireTimer:(NSTimer *)timer {
     keypressTimer = nil;
     
-    float result = [[self model] convertCurrency:3.0f fromCurr:ECurrencyEUR toCurr: ECurrencyRUB];
-    [self inputTo].text = [[NSString stringWithFormat: @"%9.2f", result] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    UITextField *fromEdit = [self model].calcDirection == EDirectionL2R ? self.inputLeft : self.inputRight;
+    UITextField *toEdit =   [self model].calcDirection == EDirectionL2R ? self.inputRight : self.inputLeft;
+    if (fromEdit.text.length == 0) {
+        toEdit.text = @"";
+        return;
+    }
+    
+    ECurrency leftCurrency = [self.model convertIntToECurreny:[self.currencyLeft selectedSegmentIndex]];
+    ECurrency rightCurrency = [self.model convertIntToECurreny:[self.currencyRight selectedSegmentIndex]];
+
+    float result;
+    if ([self model].calcDirection == EDirectionL2R) {
+        result = [[self model] convertCurrency:[fromEdit.text floatValue] fromCurr:leftCurrency toCurr:rightCurrency withDate:[self.dateRate date]];
+    } else {
+        result = [[self model] convertCurrency:[fromEdit.text floatValue] fromCurr:rightCurrency toCurr:leftCurrency withDate:[self.dateRate date]];
+    }
+    toEdit.text = [[NSString stringWithFormat: @"%9.2f", result] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
-- (IBAction) inputFromEditingChanged:(id)sender {
+- (IBAction) inputLeftEditingChanged:(id)sender {
+    if (keypressTimer.isValid) {
+        [keypressTimer invalidate];
+    }
+    [self initTimer];
+}
+
+- (IBAction) inputRightEditingChanged:(id)sender {
+    if (keypressTimer.isValid) {
+        [keypressTimer invalidate];
+    }
+    [self initTimer];
+}
+
+- (IBAction)currencyLeftChanged:(id)sender {
+    if (keypressTimer.isValid) {
+        [keypressTimer invalidate];
+    }
+    [self fireTimer:nil];
+}
+
+- (IBAction)currencyRightChanged:(id)sender {
+    if (keypressTimer.isValid) {
+        [keypressTimer invalidate];
+    }
+    [self fireTimer:nil];
+}
+
+- (IBAction)dateRateChanged:(id)sender {
     if (keypressTimer.isValid) {
         [keypressTimer invalidate];
     }
@@ -66,14 +125,14 @@
 
 #pragma mark - Arrow animation
 
-- (IBAction) inputFromTouchDown:(id)sender {
+- (IBAction) inputLeftTouchDown:(id)sender {
     if ([self model].calcDirection == EDirectionR2L) {
         [self model].calcDirection = EDirectionL2R;
         [self rotateArrow];
     }
 }
 
-- (IBAction) inputToTouchDown:(id)sender {
+- (IBAction)inputRightTouchDown:(id)sender {
     if ([self model].calcDirection == EDirectionL2R) {
         [self model].calcDirection = EDirectionR2L;
         [self rotateArrow];
@@ -89,7 +148,7 @@
         rotate.fromValue = [NSNumber numberWithFloat:0];
         rotate.toValue = [NSNumber numberWithFloat:M_PI];
     }
-    rotate.duration = .2;
+    rotate.duration = .25;
     rotate.repeatCount = 1;
     rotate.removedOnCompletion = NO;
     rotate.fillMode = kCAFillModeForwards;

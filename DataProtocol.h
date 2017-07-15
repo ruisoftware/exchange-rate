@@ -23,6 +23,6 @@ typedef enum {
 
 extern NSString *const API_BASEURL;
 
-- (float)convertCurrency: (float)value fromCurr:(ECurrency)from toCurr:(ECurrency)to;
+- (float)convertCurrency:(float)value fromCurr:(ECurrency)from toCurr:(ECurrency)to withDate:(NSDate *)date;
 
 @end
