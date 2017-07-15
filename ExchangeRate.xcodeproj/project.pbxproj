@@ -12,7 +12,6 @@
 		1648C9841F196F7F0075858A /* rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1648C9821F196F7F0075858A /* rightArrow.png */; settings = {ASSET_TAGS = (); }; };
 		16EC25AA1F16B53A0023314C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EC25A91F16B53A0023314C /* main.m */; };
 		16EC25AD1F16B53A0023314C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EC25AC1F16B53A0023314C /* AppDelegate.m */; };
-		16EC25B01F16B53A0023314C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EC25AF1F16B53A0023314C /* ViewController.m */; };
 		16EC25B31F16B53A0023314C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16EC25B11F16B53A0023314C /* Main.storyboard */; };
 		16EC25B51F16B53A0023314C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16EC25B41F16B53A0023314C /* Assets.xcassets */; };
 		16EC25B81F16B53A0023314C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16EC25B61F16B53A0023314C /* LaunchScreen.storyboard */; };
@@ -38,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1639FD4F1F1A1C45005C8853 /* DataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProtocol.h; path = ../DataProtocol.h; sourceTree = "<group>"; };
 		163E82F21F181751005BD81D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		163E82F31F181751005BD81D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		1648C9811F196F7F0075858A /* leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftArrow.png; sourceTree = "<group>"; };
@@ -46,8 +46,6 @@
 		16EC25A91F16B53A0023314C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		16EC25AB1F16B53A0023314C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		16EC25AC1F16B53A0023314C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		16EC25AE1F16B53A0023314C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		16EC25AF1F16B53A0023314C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		16EC25B21F16B53A0023314C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		16EC25B41F16B53A0023314C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16EC25B71F16B53A0023314C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -108,10 +106,9 @@
 		16EC25A71F16B53A0023314C /* ExchangeRate */ = {
 			isa = PBXGroup;
 			children = (
+				1639FD4F1F1A1C45005C8853 /* DataProtocol.h */,
 				16EC25AB1F16B53A0023314C /* AppDelegate.h */,
 				16EC25AC1F16B53A0023314C /* AppDelegate.m */,
-				16EC25AE1F16B53A0023314C /* ViewController.h */,
-				16EC25AF1F16B53A0023314C /* ViewController.m */,
 				16EC25B11F16B53A0023314C /* Main.storyboard */,
 				1648C9811F196F7F0075858A /* leftArrow.png */,
 				1648C9821F196F7F0075858A /* rightArrow.png */,
@@ -283,7 +280,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16EC25B01F16B53A0023314C /* ViewController.m in Sources */,
 				16EC25AD1F16B53A0023314C /* AppDelegate.m in Sources */,
 				16EC25AA1F16B53A0023314C /* main.m in Sources */,
 				163E82F41F181751005BD81D /* MainViewController.m in Sources */,

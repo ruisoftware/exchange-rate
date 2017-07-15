@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MainViewController;
 
 @interface MainViewController : UIViewController
+
+@property (retain, nonatomic) IBOutlet UITextField *inputFrom;
+@property (retain, nonatomic) IBOutlet UISegmentedControl *currencyFrom;
+@property (retain, nonatomic) IBOutlet UITextField *inputTo;
+@property (retain, nonatomic) IBOutlet UISegmentedControl *currencyTo;
+@property (retain, nonatomic) IBOutlet UIDatePicker *dateRate;
+@property (retain, nonatomic) IBOutlet UIImageView *arrowImg;
+
+- (IBAction)inputFromTouchDown:(id)sender;
+- (IBAction)inputToTouchDown:(id)sender;
+- (IBAction)inputFromEditingChanged:(id)sender;
 
 @end

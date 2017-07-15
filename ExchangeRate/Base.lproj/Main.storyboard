@@ -68,6 +68,10 @@
                                                 <include reference="whh-L9-Bxf"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="inputFromEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="INQ-3t-Ika"/>
+                                            <action selector="inputFromTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="Xcf-ED-cz6"/>
+                                        </connections>
                                     </textField>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RYI-U1-zBk">
                                         <rect key="frame" x="108" y="46" width="131" height="29"/>
@@ -129,6 +133,9 @@
                                                 <include reference="rLS-uE-jsY"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="inputToTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="jn5-bB-wuj"/>
+                                        </connections>
                                     </textField>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eAk-Jq-YUR">
                                         <rect key="frame" x="8" y="46" width="130" height="29"/>
@@ -226,6 +233,14 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="arrowImg" destination="dBK-cD-9kt" id="TZf-QW-N6X"/>
+                        <outlet property="currencyFrom" destination="RYI-U1-zBk" id="Vfo-kq-Uuj"/>
+                        <outlet property="currencyTo" destination="eAk-Jq-YUR" id="B26-2t-z0q"/>
+                        <outlet property="dateRate" destination="4qv-3w-lQe" id="Qr0-oL-7NX"/>
+                        <outlet property="inputFrom" destination="zgX-gC-Hmk" id="qNR-or-Wq7"/>
+                        <outlet property="inputTo" destination="QPd-xF-yWL" id="mab-on-Hiy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

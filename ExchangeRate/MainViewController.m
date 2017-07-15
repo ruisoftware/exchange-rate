@@ -7,12 +7,16 @@
 //
 
 #import "MainViewController.h"
+#include <math.h>
 
 @interface MainViewController ()
 
 @end
 
-@implementation MainViewController
+@implementation MainViewController {
+
+    NSTimer * keypressTimer;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,10 +40,59 @@
 */
 
 - (void)dealloc {
+    [_inputFrom release];
+    [_currencyFrom release];
+    [_inputTo release];
+    [_currencyTo release];
+    [_dateRate release];
+    [_arrowImg release];
+    [keypressTimer release];
     [super dealloc];
 }
 
-- (void) initialize {
-    // self.inputFrom.keyboardType = UIKeyboardTypeDecimalPad;
+- (void)initialize {
+    self.inputFrom.keyboardType = UIKeyboardTypeDecimalPad;
+    self.inputTo.keyboardType = UIKeyboardTypeDecimalPad;
+}
+
+- (void)initTimer {
+    keypressTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fireTimer:) userInfo:nil repeats:NO];
+}
+
+- (void)fireTimer:(NSTimer *)timer {
+    [keypressTimer release];
+    keypressTimer = nil;
+}
+
+- (IBAction)inputFromTouchDown:(id)sender {
+    [self rotateArrow:TRUE];
+}
+
+- (IBAction)inputToTouchDown:(id)sender {
+    [self rotateArrow:FALSE];
+}
+
+
+- (IBAction)inputFromEditingChanged:(id)sender {
+    if (keypressTimer.isValid) {
+        [keypressTimer invalidate];
+    }
+    [self initTimer];
+}
+
+- (void)rotateArrow: (BOOL)rotateToTheRight {
+    CABasicAnimation *rotate = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+    if (rotateToTheRight) {
+        rotate.fromValue = [NSNumber numberWithFloat:M_PI];
+        rotate.toValue = [NSNumber numberWithFloat:0];
+    } else {
+        rotate.fromValue = [NSNumber numberWithFloat:0];
+        rotate.toValue = [NSNumber numberWithFloat:M_PI];
+    }
+    rotate.duration = .2;
+    rotate.repeatCount = 1;
+    rotate.removedOnCompletion = NO;
+    rotate.fillMode = kCAFillModeForwards;
+    [self.arrowImg.layer addAnimation:rotate forKey:nil];
 }
 @end
