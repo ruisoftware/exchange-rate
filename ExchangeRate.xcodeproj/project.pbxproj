@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1639FD541F1A5E87005C8853 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1639FD531F1A55F1005C8853 /* DataModel.m */; };
 		163E82F41F181751005BD81D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 163E82F31F181751005BD81D /* MainViewController.m */; settings = {ASSET_TAGS = (); }; };
 		1648C9831F196F7F0075858A /* leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1648C9811F196F7F0075858A /* leftArrow.png */; settings = {ASSET_TAGS = (); }; };
 		1648C9841F196F7F0075858A /* rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1648C9821F196F7F0075858A /* rightArrow.png */; settings = {ASSET_TAGS = (); }; };
@@ -38,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		1639FD4F1F1A1C45005C8853 /* DataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProtocol.h; path = ../DataProtocol.h; sourceTree = "<group>"; };
+		1639FD501F1A51C8005C8853 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
+		1639FD531F1A55F1005C8853 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
 		163E82F21F181751005BD81D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		163E82F31F181751005BD81D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		1648C9811F196F7F0075858A /* leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftArrow.png; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				1639FD4F1F1A1C45005C8853 /* DataProtocol.h */,
+				1639FD501F1A51C8005C8853 /* DataModel.h */,
+				1639FD531F1A55F1005C8853 /* DataModel.m */,
 				16EC25AB1F16B53A0023314C /* AppDelegate.h */,
 				16EC25AC1F16B53A0023314C /* AppDelegate.m */,
 				16EC25B11F16B53A0023314C /* Main.storyboard */,
@@ -280,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1639FD541F1A5E87005C8853 /* DataModel.m in Sources */,
 				16EC25AD1F16B53A0023314C /* AppDelegate.m in Sources */,
 				16EC25AA1F16B53A0023314C /* main.m in Sources */,
 				163E82F41F181751005BD81D /* MainViewController.m in Sources */,
@@ -423,7 +429,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				INFOPLIST_FILE = ExchangeRate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rs.ExchangeRate;
@@ -435,7 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				INFOPLIST_FILE = ExchangeRate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rs.ExchangeRate;

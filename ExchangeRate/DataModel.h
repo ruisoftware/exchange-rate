@@ -7,22 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DataProtocol.h"
 
-@protocol DataProtocol <NSObject>
+@interface DataModel : NSObject<DataProtocol>
 
-typedef enum {
-    ECurrencyRUB,
-    ECurrencyUSD,
-    ECurrencyEUR
-} ECurrency;
+@property (assign, nonatomic) EDirection calcDirection;
 
-typedef enum {
-    EDirectionL2R,
-    EDirectionR2L
-} EDirection;
-
-extern NSString *const API_BASEURL;
++ (id)getInstance; /* singleton */
 
 - (float)convertCurrency: (float)value fromCurr:(ECurrency)from toCurr:(ECurrency)to;
-
 @end

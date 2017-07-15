@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataModel.h"
+
 @class MainViewController;
 
 @interface MainViewController : UIViewController
@@ -17,6 +19,8 @@
 @property (retain, nonatomic) IBOutlet UISegmentedControl *currencyTo;
 @property (retain, nonatomic) IBOutlet UIDatePicker *dateRate;
 @property (retain, nonatomic) IBOutlet UIImageView *arrowImg;
+
+@property (retain, nonatomic) DataModel *model;
 
 - (IBAction)inputFromTouchDown:(id)sender;
 - (IBAction)inputToTouchDown:(id)sender;

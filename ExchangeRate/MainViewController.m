@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+
 #include <math.h>
 
 @interface MainViewController ()
@@ -14,19 +15,17 @@
 @end
 
 @implementation MainViewController {
-
-    NSTimer * keypressTimer;
+    NSTimer *keypressTimer;
 }
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     [self initialize];
     
 }
 
-- (void)didReceiveMemoryWarning {
+- (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*
@@ -39,50 +38,51 @@
 }
 */
 
-- (void)dealloc {
-    [_inputFrom release];
-    [_currencyFrom release];
-    [_inputTo release];
-    [_currencyTo release];
-    [_dateRate release];
-    [_arrowImg release];
-    [keypressTimer release];
-    [super dealloc];
-}
-
-- (void)initialize {
+- (void) initialize {
     self.inputFrom.keyboardType = UIKeyboardTypeDecimalPad;
     self.inputTo.keyboardType = UIKeyboardTypeDecimalPad;
+    self.model = [DataModel getInstance];
 }
 
-- (void)initTimer {
+# pragma mark - Timer that triggers API request
+
+- (void) initTimer {
     keypressTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fireTimer:) userInfo:nil repeats:NO];
 }
 
-- (void)fireTimer:(NSTimer *)timer {
-    [keypressTimer release];
+- (void) fireTimer:(NSTimer *)timer {
     keypressTimer = nil;
+    
+    float result = [[self model] convertCurrency:3.0f fromCurr:ECurrencyEUR toCurr: ECurrencyRUB];
+    [self inputTo].text = [[NSString stringWithFormat: @"%9.2f", result] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
-- (IBAction)inputFromTouchDown:(id)sender {
-    [self rotateArrow:TRUE];
-}
-
-- (IBAction)inputToTouchDown:(id)sender {
-    [self rotateArrow:FALSE];
-}
-
-
-- (IBAction)inputFromEditingChanged:(id)sender {
+- (IBAction) inputFromEditingChanged:(id)sender {
     if (keypressTimer.isValid) {
         [keypressTimer invalidate];
     }
     [self initTimer];
 }
 
-- (void)rotateArrow: (BOOL)rotateToTheRight {
+#pragma mark - Arrow animation
+
+- (IBAction) inputFromTouchDown:(id)sender {
+    if ([self model].calcDirection == EDirectionR2L) {
+        [self model].calcDirection = EDirectionL2R;
+        [self rotateArrow];
+    }
+}
+
+- (IBAction) inputToTouchDown:(id)sender {
+    if ([self model].calcDirection == EDirectionL2R) {
+        [self model].calcDirection = EDirectionR2L;
+        [self rotateArrow];
+    }
+}
+
+- (void) rotateArrow {
     CABasicAnimation *rotate = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-    if (rotateToTheRight) {
+    if ([self model].calcDirection == EDirectionL2R) {
         rotate.fromValue = [NSNumber numberWithFloat:M_PI];
         rotate.toValue = [NSNumber numberWithFloat:0];
     } else {
