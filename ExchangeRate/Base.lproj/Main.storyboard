@@ -193,7 +193,7 @@
                                     <navigationItem title="Exchange Rate" id="b7f-6v-4T2">
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="Sp2-jY-uWc">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" id="h2i-IT-OZu">
-                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <rect key="frame" x="534" y="7" width="46" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -253,13 +253,13 @@
                                 <include reference="wpS-Bm-rez"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="ZfY-GQ-owy"/>
-                                <include reference="zbE-eh-i5z"/>
-                                <include reference="JSZ-Tv-kty"/>
                                 <include reference="BDu-EB-WTh"/>
                                 <include reference="I40-D7-aib"/>
                                 <include reference="pxy-0f-ObN"/>
                                 <include reference="v6O-Y8-zCH"/>
+                                <include reference="ZfY-GQ-owy"/>
+                                <include reference="zbE-eh-i5z"/>
+                                <include reference="JSZ-Tv-kty"/>
                                 <include reference="22E-Jp-aYs"/>
                             </mask>
                         </variation>

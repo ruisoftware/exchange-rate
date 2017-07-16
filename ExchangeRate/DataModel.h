@@ -13,11 +13,12 @@
 
 @property (assign, nonatomic) EDirection calcDirection;
 
-+ (id)getInstance; /* singleton */
++ (id) getInstance; /* singleton */
 
-- (float)convertCurrency:(float)value fromCurr:(ECurrency)from toCurr:(ECurrency)to withDate:(NSDate *)date;
+- (NSDate *) getAPIMinimumDate;
+- (float) convertCurrency:(float)value fromCurr:(ECurrency)from toCurr:(ECurrency)to withDate:(NSDate *)date;
 
-- (NSString *)convertECurrenyToStr: (ECurrency) curr;
-- (ECurrency)convertStrToECurreny: (NSString *) curr;
-- (ECurrency)convertIntToECurreny: (NSInteger) idx;
+- (NSString *) convertECurrenyToStr:(ECurrency)curr;
+- (ECurrency) convertStrToECurreny:(NSString *)curr;
+- (ECurrency) convertIntToECurreny:(NSInteger)idx;
 @end

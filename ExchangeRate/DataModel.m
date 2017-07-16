@@ -28,7 +28,19 @@ NSString *const API_BASEURL = @"https://api.fixer.io";
 
 #pragma mark - API
 
-- (NSString *)getApiUrl:(ECurrency)from withDate:(NSDate *)date {
+- (float) convertCurrency:(float)value fromCurr:(ECurrency)from toCurr:(ECurrency)to withDate:(NSDate *)date {
+    return value*[self getRatioFrom:from toCurr:to withDate:date];
+}
+
+- (NSDate *) getAPIMinimumDate { // fixer.io API has no data before April 1st 2005
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setDay:1];
+    [comps setMonth:4];
+    [comps setYear:2005];
+    return [[[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian] dateFromComponents:comps];
+}
+
+- (NSString *) getApiUrl:(ECurrency)from withDate:(NSDate *)date {
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:date];
     NSString *dateUrl;
     if ([[NSCalendar currentCalendar] isDateInToday:date]) {
@@ -36,11 +48,8 @@ NSString *const API_BASEURL = @"https://api.fixer.io";
     } else {
         dateUrl = [NSString stringWithFormat:@"%04d-%02d-%02d", (int)dateComponents.year, (int)dateComponents.month, (int)dateComponents.day];
     }
+    NSLog(@"%@", dateUrl);
     return [NSString stringWithFormat: @"%@/%@?base=%@", API_BASEURL, dateUrl, [self convertECurrenyToStr:from]];
-}
-
-- (float) convertCurrency:(float)value fromCurr:(ECurrency)from toCurr:(ECurrency)to withDate:(NSDate *)date {
-    return value*[self getRatioFrom:from toCurr:to withDate:date];
 }
 
 - (float) getRatioFrom:(ECurrency)from toCurr:(ECurrency)to withDate:(NSDate *)date {

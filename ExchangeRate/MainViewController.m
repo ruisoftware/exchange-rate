@@ -39,10 +39,12 @@
 */
 
 - (void) initialize {
+    self.model = [DataModel getInstance];
+
     self.inputLeft.keyboardType = UIKeyboardTypeDecimalPad;
     self.inputRight.keyboardType = UIKeyboardTypeDecimalPad;
+    self.dateRate.minimumDate = [self.model getAPIMinimumDate];
     self.dateRate.maximumDate = [NSDate date];
-    self.model = [DataModel getInstance];
     self.btnHideKeyboard.hidden = TRUE;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
