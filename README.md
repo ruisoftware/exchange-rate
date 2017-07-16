@@ -3,7 +3,7 @@ A simple iOS app for currency exchange rates.
 
 This app fetchs currency information in Json format from the http://fixer.io/ API.
 
-# Key Features
+### Key Features
  - Convert money between Russian Rubles (₽), US Dollars ($) and European Euros (€); 
  - Bidirectional conversion. You can either type on the left or on the right side;
  - Possibility to use older rates from previous dates;
