@@ -1,7 +1,7 @@
 # exchange-rate
-A simple iOS app for currency exchange rates.
+A single page iOS app for currency exchange rates.
 
-This app fetchs currency information in Json format from the http://fixer.io/ API.
+The API used to retrieve currency information is http://fixer.io/  
 
 ### Key Features
  - Convert money between Russian Rubles (₽), US Dollars ($) and European Euros (€); 
@@ -17,3 +17,6 @@ Here is the UML diagram.
 
 This app has no "update" button to call the API and make the conversion.  
 The conversion is done automatically on every keystroke, or more precisely, 1 second after the last keystroke, hence the reason for a timer.
+
+Developed on XCode 7.0.1  
+Development target: iOS 9.0
