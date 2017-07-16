@@ -15,7 +15,7 @@ The API used to retrieve currency information is http://fixer.io/
 Here is the UML diagram.
 ![uml](https://user-images.githubusercontent.com/428736/28249889-078eafdc-6a67-11e7-8d94-91bbb9214e4c.png)
 
-This app has no "update" button to call the API and make the conversion.  
+This app has no "Convert" button to call the API and make the conversion.  
 The conversion is done automatically on every keystroke, or more precisely, 1 second after the last keystroke, hence the reason for a timer.
 
 Developed on XCode 7.0.1  
